@@ -1,0 +1,16 @@
+#!/bin/bash
+
+
+
+if [[ -z $1 ]]; then
+    MOST_RECENT_FILE=$(ls -1t | head -1)
+else
+    MOST_RECENT_FILE=$(ls -1t | head -n $1 | tail -1)
+fi
+
+echo "$MOST_RECENT_FILE"
+
+if [[ ! $2 = nc ]]; then
+    echo -n "$MOST_RECENT_FILE" | pbcopy
+    say copied &
+fi
